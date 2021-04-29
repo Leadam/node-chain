@@ -18,7 +18,6 @@ describe('Blockchain', () => {
         const block = new Block(now, "Hello");
 
         chain.addBlock(block)
-        chain.miningPendingBlock()
 
         assert(chain.isValid())
     })
@@ -29,7 +28,6 @@ describe('Blockchain', () => {
         const block = new Block(now, "Hello");
 
         chain.addBlock(block)
-        chain.miningPendingBlock()
 
         chain.getLastBlock().data = "Hello world"
 
