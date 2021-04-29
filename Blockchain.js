@@ -1,4 +1,6 @@
 const crypto = require('crypto');
+const BSON = require('bson');
+const fs = require('fs');
 
 class Block{
     constructor(timestamp, data, prevHash = "") {
@@ -39,22 +41,7 @@ class Chain{
     constructor(name,  miningFunction= undefined) {
         this.name = name
         this.chain = [new Block(Date.now(), ["#"], null)]
-        this.penddingBlock = []
         this.mineingFunction = miningFunction;
-    }
-
-    addTransaction(transaction){
-        if(!transaction.isValid()){
-            throw Error("Invalid transaction")
-        }
-
-        this.penddingBlock.push(transaction)
-    }
-
-    miningPendingBlock(){
-        const block = new Block(Date.now(), this.penddingBlock)
-        this.addBlock(block)
-        this.penddingBlock = []
     }
 
     getLastBlock(){
@@ -81,6 +68,14 @@ class Chain{
             }
         }
         return true
+    }
+
+    writeToFile(filename, callback = () => {}){
+        fs.writeFileSync(filename, BSON.serialize(this.chain))
+    }
+
+    readFromFile(filename){
+        this.chain = BSON.deserialize(fs.readFileSync(filename))
     }
 }
 
