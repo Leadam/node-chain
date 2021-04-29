@@ -1,0 +1,22 @@
+{
+  "name": "node-chain",
+  "version": "1.0.0",
+  "description": "Simple blockchain implementation",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "Blockchain",
+    "Simple",
+    "POC"
+  ],
+  "author": "Adam Lengyel",
+  "license": "ISC",
+  "dependencies": {
+    "crypto": "^1.0.1"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "mocha": "^8.3.2"
+  }
+}
